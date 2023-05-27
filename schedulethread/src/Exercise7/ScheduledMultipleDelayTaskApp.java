@@ -3,6 +3,7 @@ package Exercise7;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
@@ -143,5 +144,26 @@ public class ScheduledMultipleDelayTaskApp {
 	    // delay task1 for 13 seconds
 	    ScheduledFuture<?> result4 = 
 	    		scheduledExecutor.schedule(task4, 13, TimeUnit.SECONDS);
+	    
+	    shutdownAndAwaitTermination(scheduledExecutor);
+	}
+	
+	/**
+	 * This method disable more from being submitted.
+	 * 
+	 * @param executorService
+	 */
+	static void shutdownAndAwaitTermination(ExecutorService executorService) {
+		
+		executorService.shutdown();
+		
+		try {
+			if (!executorService.awaitTermination(1, TimeUnit.MINUTES)) {
+				executorService.shutdownNow();
+			}
+		} catch (InterruptedException ie) {
+			executorService.shutdownNow();
+			Thread.currentThread().interrupt();
+		}
 	}
 }

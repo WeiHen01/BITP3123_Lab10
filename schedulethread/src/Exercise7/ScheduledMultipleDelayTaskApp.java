@@ -34,9 +34,8 @@ public class ScheduledMultipleDelayTaskApp {
 		LocalDateTime now = LocalDateTime.now();  
 		
 		// Display current time to mark the execution from the main( ) 
-	    System.out.println("Task scheduled to execute after 5 seconds at : " + dtf.format(now) + "\n");
+	    System.out.println("Task scheduled to execute after 3 seconds at : " + dtf.format(now) + "\n");
 	  
-	    // Execute task for 5 seconds after the application starts
 	    
 	    // create object for field School
 	    Field school = new Field();

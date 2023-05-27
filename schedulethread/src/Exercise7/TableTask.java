@@ -106,14 +106,13 @@ public class TableTask implements Runnable{
 						+ fields.get(i).getName() + "\t" + fields.get(i).getType());
 			}
 		}
-		System.out.println("\n");
 
 	}
 	
 	// generate SQL SELECT ALL statement in the list of field
 	public void SelectAll()
 	{
-		System.out.println("SQL Statement to SELECT ALL record " + name);
+		System.out.println("\nSQL Statement to SELECT ALL records from table" + name);
 		System.out.println("SELECT * FROM " + name + "\n");
 
 		// display all records in the list of field
@@ -149,7 +148,7 @@ public class TableTask implements Runnable{
 		System.out.println("DELETE FROM " + name + " WHERE PRIMARY KEY = true" + "\n");
 		
 		// display current records before delete
-		System.out.println("Before delete, the records: ");
+		System.out.println("Before delete, the current records: ");
 		for (int i = 0; i < fields.size(); i++) {
 			System.out.println(fields.get(i).isPrimaryKey() + "\t\t" 
 					+ fields.get(i).getName() + "\t" + fields.get(i).getType());
@@ -171,7 +170,7 @@ public class TableTask implements Runnable{
 		
 		// display the record after delete record is done
 		System.out.println("");
-		System.out.println("After delete, the records: ");
+		System.out.println("After delete, the current records: ");
 		
 		for (int j = 0; j < fields.size(); j++) {
 			System.out.println(fields.get(j).isPrimaryKey() + "\t\t" 

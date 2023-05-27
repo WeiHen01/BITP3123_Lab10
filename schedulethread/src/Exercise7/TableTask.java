@@ -41,8 +41,8 @@ public class TableTask implements Runnable{
 		//check for multiple records to be inserted
 		for (int i = 0; i < fields.size(); i++)
 		{
-			System.out.print("('" + fields.get(i).isPrimaryKey() + "', "
-					+ fields.get(i).getName() + "', " + fields.get(i).getType() + "')");
+			System.out.print("('" + fields.get(i).isPrimaryKey() + "', '"
+					+ fields.get(i).getName() + "', '" + fields.get(i).getType() + "')");
 			
 			//validate for multiple records
 			if(i < fields.size() - 1) {

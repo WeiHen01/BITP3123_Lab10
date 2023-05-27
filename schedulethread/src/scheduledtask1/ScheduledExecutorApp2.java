@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  * 
  * 
  * 
- * @author emalianakasmuri
+ * @author emalianakasmuri, Ng Wei Hen
  *
  */
 public class ScheduledExecutorApp2 {
@@ -49,6 +49,20 @@ public class ScheduledExecutorApp2 {
 	    		scheduledExecutor.schedule(task2, 15, TimeUnit.SECONDS);
 	    ScheduledFuture<?> result3 = 
 	    		scheduledExecutor.schedule(task3, 10, TimeUnit.SECONDS);
+	    
+	    /*
+	     * Exercise 6
+	     * Change the delay time for all task 1, 2 and 3 to 5 seconds
+	     */
+	    //delay for 5 seconds
+	    ScheduledFuture<?> result4 = 
+	    		scheduledExecutor.schedule(task1, 5, TimeUnit.SECONDS);
+	    //delay for 5 seconds
+	    ScheduledFuture<?> result5 = 
+	    		scheduledExecutor.schedule(task2, 5, TimeUnit.SECONDS);
+	    //delay for 5 seconds
+	    ScheduledFuture<?> result6 = 
+	    		scheduledExecutor.schedule(task3, 5, TimeUnit.SECONDS);
 	    
 	    System.out.println("Shutdown and await requested at : " 
 	    		+ dtf.format(now));

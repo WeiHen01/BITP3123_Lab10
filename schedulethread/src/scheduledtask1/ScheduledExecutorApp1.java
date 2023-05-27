@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  * 
  * 
  * 
- * @author emalianakasmuri
+ * @author emalianakasmuri, Ng Wei Hen
  *
  */
 public class ScheduledExecutorApp1 {

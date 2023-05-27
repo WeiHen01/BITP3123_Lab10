@@ -36,9 +36,6 @@ public class ScheduledExecutorApp1 {
 	    System.out.println("Task scheduled to execute after 10 seconds at : " 
 	    		+ dtf.format(now));
 	    
-	    // Exercise 2
-	    // Cross Reference to Task.java
-	    
 	    // Execute task 10 seconds after the application starts
 	    Runnable task = new Task("App-Task");
 	    ScheduledFuture<?> result = 

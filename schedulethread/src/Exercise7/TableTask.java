@@ -27,14 +27,17 @@ public class TableTask implements Runnable{
 	// generate SQL CREATE table statement
 	public void CreateTable()
 	{
-		System.out.println("SQL Statement to CREATE a table:");
+		System.out.println("SQL Statement to CREATE a table " + name);
 		System.out.println("CREATE TABLE " + name + "\n");
+		System.out.println("Primary Key\t BOOLEAN\t PRIMARY KEY");
+		System.out.println("Name\t\t VARCHAR(20)\t NOT NULL");
+		System.out.println("Type\t\t VARCHAR(20)\t NOT NULL\n");
 	}
 	
 	// generate SQL INSERT record statement in the list of field
 	public void InsertRecord()
 	{
-		System.out.println("SQL Statement to INSERT a record");
+		System.out.println("SQL Statement to INSERT a record into table " + name);
 		System.out.println("INSERT INTO " + name);
 		System.out.print("VALUES ");
 		
@@ -44,7 +47,7 @@ public class TableTask implements Runnable{
 			System.out.print("('" + fields.get(i).isPrimaryKey() + "', '"
 					+ fields.get(i).getName() + "', '" + fields.get(i).getType() + "')");
 			
-			//validate for multiple records
+			// validate for multiple records
 			if(i < fields.size() - 1) {
 				System.out.println(", ");
 			}
@@ -56,46 +59,51 @@ public class TableTask implements Runnable{
 	public void UpdateRecord()
 	{	
 		// display SQL UPDATE Statement
-		System.out.println("SQL Statement to UPDATE a record");
+		System.out.println("SQL Statement to UPDATE a record to table " + name);
 		
 		// update name of certain record if primary key is true
 		for (int i = 0; i < fields.size(); i++)
 		{
 			if(fields.get(i).isPrimaryKey() == true) {
 				// before update
-				System.out.println("Before update, name = " + fields.get(i).getName()
-						+ ", type = " + fields.get(i).getType());
+				System.out.println("Before update: ");
+				System.out.println(fields.get(i).isPrimaryKey() + "\t\t" 
+								+ fields.get(i).getName() + "\t" + fields.get(i).getType());
 				
-				// update name of record based on the task name
-				System.out.print("UPDATE " + name + " SET ");
+				// update name of record to the table based on the task name
+				System.out.print("\nUPDATE " + name + " SET ");
 				
-				// IF it's lecturer
+				// IF it's lecturer, update the record in Lecturer table
 				if(name == "Lecturer") {
 					fields.get(i).setName("Pn Emaliana");
 					fields.get(i).setType("Lecturer DAD");
-					System.out.print("name = " + fields.get(i).getName()
+					System.out.println("name = " + fields.get(i).getName()
 							+ " WHERE primary key = " + fields.get(i).isPrimaryKey());
 				}
-				// ELSE IF it's student
+				// ELSE IF it's student, update the record in Student table
 				else if(name == "Student") {
 					fields.get(i).setName("Teoh Jia Qi");
-					System.out.print("name = " + fields.get(i).getName()
+					System.out.println("name = " + fields.get(i).getName()
 							+ " WHERE primary key = " + fields.get(i).isPrimaryKey());
 				}
-				// ELSE IF it's school
+				// ELSE IF it's school, update the record in School table
 				else if(name == "School") {
 					fields.get(i).setName("UUM");
-					System.out.print("name = " + fields.get(i).getName()
+					System.out.println("name = " + fields.get(i).getName()
 							+ " WHERE primary key = " + fields.get(i).isPrimaryKey());
 				}
-				// if it's subject
+				// else it's subject, update the record in Subject table
 				else {
 					fields.get(i).setName("Calculus");
 					fields.get(i).setType("BITI1223");
-					System.out.print("name = " + fields.get(i).getName()
+					System.out.println("name = " + fields.get(i).getName()
 							+ " WHERE primary key = " + fields.get(i).isPrimaryKey());
 				}
-
+				
+				// display the record after update is done
+				System.out.println("\nAfter update: ");
+				System.out.println(fields.get(i).isPrimaryKey() + "\t\t" 
+						+ fields.get(i).getName() + "\t" + fields.get(i).getType());
 			}
 		}
 		System.out.println("\n");
@@ -105,7 +113,7 @@ public class TableTask implements Runnable{
 	// generate SQL SELECT ALL statement in the list of field
 	public void SelectAll()
 	{
-		System.out.println("SQL Statement to SELECT ALL record");
+		System.out.println("SQL Statement to SELECT ALL record " + name);
 		System.out.println("SELECT * FROM " + name + "\n");
 
 		// display all records in the list of field
@@ -119,7 +127,7 @@ public class TableTask implements Runnable{
 	// generate SQL SELECT statement in the list of field
 	public void SelectRecord()
 	{
-		System.out.println("SQL Statement to SELECT a certain record");
+		System.out.println("SQL Statement to SELECT a certain record from table " + name);
 		System.out.println("SELECT FROM " + name + " WHERE PRIMARY KEY = true" + "\n");
 		
 		// display the record if the primary key is true
@@ -136,8 +144,11 @@ public class TableTask implements Runnable{
 	// generate SQL DELETE statement in the list of field
 	public void DeleteRecord()
 	{
-		System.out.println("SQL Statement to DELETE a certain record");
+		// display SQL DELETE statement
+		System.out.println("SQL Statement to DELETE a certain record from table " + name);
 		System.out.println("DELETE FROM " + name + " WHERE PRIMARY KEY = true" + "\n");
+		
+		// display current records before delete
 		System.out.println("Before delete, the records: ");
 		for (int i = 0; i < fields.size(); i++) {
 			System.out.println(fields.get(i).isPrimaryKey() + "\t\t" 
@@ -157,9 +168,11 @@ public class TableTask implements Runnable{
 				fields.remove(i);
 			}
 		}
+		
+		// display the record after delete record is done
 		System.out.println("");
 		System.out.println("After delete, the records: ");
-		// display the record after delete record is done
+		
 		for (int j = 0; j < fields.size(); j++) {
 			System.out.println(fields.get(j).isPrimaryKey() + "\t\t" 
 					+ fields.get(j).getName() + "\t" + fields.get(j).getType());
@@ -167,9 +180,10 @@ public class TableTask implements Runnable{
 		System.out.println("");
 	}
 	
+	// Generate DROP statement to delete a entity 
 	public void DropTable()
 	{
-		System.out.println("SQL Statement to DROP a table");
+		System.out.println("SQL Statement to DROP table " + name);
 		System.out.println("DROP TABLE " + name + "\n");
 	}
 
